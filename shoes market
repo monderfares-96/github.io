@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Shoe Market</title>
+
+<style>
+body {
+    font-family: Arial;
+    margin: 0;
+    background: #f5f5f5;
+}
+
+header {
+    background: black;
+    color: white;
+    padding: 15px;
+    text-align: center;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 20px;
+}
+
+.card {
+    background: white;
+    width: 250px;
+    margin: 15px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.card h3 {
+    margin: 10px 0;
+}
+
+.price {
+    color: green;
+    font-weight: bold;
+}
+
+button {
+    background: black;
+    color: white;
+    border: none;
+    padding: 10px;
+    margin: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>👟 Shoe Market</h1>
+</header>
+
+<div class="container">
+
+    <div class="card">
+        <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff">
+        <h3>Nike Air</h3>
+        <p class="price">12000 DA</p>
+        <button>Buy</button>
+    </div>
+
+    <div class="card">
+        <img src="https://images.unsplash.com/photo-1519741497674-611481863552">
+        <h3>Adidas Run</h3>
+        <p class="price">9500 DA</p>
+        <button>Buy</button>
+    </div>
+
+    <div class="card">
+        <img src="https://images.unsplash.com/photo-1528701800489-20be3cbb2cfd">
+        <h3>Puma Sport</h3>
+        <p class="price">8700 DA</p>
+        <button>Buy</button>
+    </div>
+
+</div>
+
+</body>
+</html>
