@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Shoe Market</title>
+<title>Shoe Market Pro</title>
 
 <style>
 body {
@@ -18,11 +18,22 @@ header {
     text-align: center;
 }
 
+.search {
+    text-align: center;
+    margin: 20px;
+}
+
+.search input {
+    padding: 10px;
+    width: 250px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
 .container {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    padding: 20px;
 }
 
 .card {
@@ -41,10 +52,6 @@ header {
     object-fit: cover;
 }
 
-.card h3 {
-    margin: 10px 0;
-}
-
 .price {
     color: green;
     font-weight: bold;
@@ -55,9 +62,19 @@ button {
     color: white;
     border: none;
     padding: 10px;
-    margin: 10px;
+    margin: 5px;
     cursor: pointer;
     border-radius: 5px;
+}
+
+.cart {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background: white;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
 }
 </style>
 </head>
@@ -68,30 +85,67 @@ button {
     <h1>👟 Shoe Market</h1>
 </header>
 
-<div class="container">
+<div class="search">
+    <input type="text" id="search" placeholder="Search shoes..." onkeyup="filterProducts()">
+</div>
 
-    <div class="card">
-        <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff">
-        <h3>Nike Air</h3>
-        <p class="price">12000 DA</p>
-        <button>Buy</button>
-    </div>
+<div class="cart">
+    🛒 Cart: <span id="cart-count">0</span>
+</div>
 
-    <div class="card">
-        <img src="https://images.unsplash.com/photo-1519741497674-611481863552">
-        <h3>Adidas Run</h3>
-        <p class="price">9500 DA</p>
-        <button>Buy</button>
-    </div>
+<div class="container" id="products">
 
-    <div class="card">
-        <img src="https://images.unsplash.com/photo-1528701800489-20be3cbb2cfd">
-        <h3>Puma Sport</h3>
-        <p class="price">8700 DA</p>
-        <button>Buy</button>
-    </div>
+<div class="card" data-name="nike air">
+    <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff">
+    <h3>Nike Air</h3>
+    <p class="price">12000 DA</p>
+    <button onclick="addToCart('Nike Air')">Add to Cart</button>
+    <button onclick="orderWhatsApp('Nike Air')">Order</button>
+</div>
+
+<div class="card" data-name="adidas run">
+    <img src="https://images.unsplash.com/photo-1519741497674-611481863552">
+    <h3>Adidas Run</h3>
+    <p class="price">9500 DA</p>
+    <button onclick="addToCart('Adidas Run')">Add to Cart</button>
+    <button onclick="orderWhatsApp('Adidas Run')">Order</button>
+</div>
+
+<div class="card" data-name="puma sport">
+    <img src="https://images.unsplash.com/photo-1528701800489-20be3cbb2cfd">
+    <h3>Puma Sport</h3>
+    <p class="price">8700 DA</p>
+    <button onclick="addToCart('Puma Sport')">Add to Cart</button>
+    <button onclick="orderWhatsApp('Puma Sport')">Order</button>
+</div>
 
 </div>
+
+<script>
+let cart = 0;
+
+function addToCart(product) {
+    cart++;
+    document.getElementById("cart-count").innerText = cart;
+}
+
+function orderWhatsApp(product) {
+    let phone = "213XXXXXXXXX"; // replace with your number
+    let message = "Hello, I want to order: " + product;
+    let url = "https://wa.me/" + phone + "?text=" + encodeURIComponent(message);
+    window.open(url, "_blank");
+}
+
+function filterProducts() {
+    let input = document.getElementById("search").value.toLowerCase();
+    let cards = document.querySelectorAll(".card");
+
+    cards.forEach(card => {
+        let name = card.getAttribute("data-name");
+        card.style.display = name.includes(input) ? "block" : "none";
+    });
+}
+</script>
 
 </body>
 </html>
